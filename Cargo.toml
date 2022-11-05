@@ -1,0 +1,9 @@
+[workspace]
+members = [
+  "testcontainers",
+  "images",
+]
+
+[profile.release]
+# enable link time optimization
+lto = true

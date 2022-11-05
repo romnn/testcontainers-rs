@@ -1,0 +1,56 @@
+[package]
+name = "testcontainers-rs"
+version = "0.0.0"
+edition = "2021"
+authors = ["romnn <contact@romnn.com>"]
+description = "testcontainers in rust"
+license-file = "LICENSE"
+readme = "README.md"
+homepage = "https://github.com/romnn/testcontainers-rs"
+repository = "https://github.com/romnn/testcontainers-rs"
+categories = [
+  "multimedia::images",
+  "command-line-utilities",
+  "wasm",
+  "web-programming"
+]
+keywords = [
+  "image",
+  "35mm",
+  "film",
+  "photography",
+  "borders"
+]
+exclude = [
+  "samples/*",
+  "www/*",
+  "nginx.conf",
+  "tasks.py",
+  "Dockerfile*"
+]
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+default = []
+
+[package.metadata.cargo-feature-combinations]
+denylist = ["default"]
+
+[dependencies]
+thiserror = "1"
+lazy_static = "1"
+bollard = "0.13"
+tokio = { version = "1", features = [ "macros" ] }
+async-trait = "0.1"
+
+
+[dev-dependencies]
+pretty_assertions = "1"
+color-eyre = "0.6"
+
+# anyhow = "1"
+# approx = "0"
+# regex = "1"
+# criterion = "0.4"
