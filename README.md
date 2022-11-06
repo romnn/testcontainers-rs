@@ -1,5 +1,11 @@
 ## testcontainers-rs
 
+#### Examples
+
+```bash
+RUST_LOG=debug cargo run --example custom
+```
+
 #### Linting
 
 ```bash

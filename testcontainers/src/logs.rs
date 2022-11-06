@@ -1,4 +1,7 @@
-use futures::{stream::BoxStream, StreamExt};
+use futures::{
+    stream::{BoxStream, Stream},
+    StreamExt,
+};
 use std::{fmt, io};
 
 /// WaitError describes errors when waiting for a log line
@@ -18,21 +21,24 @@ pub enum WaitError {
     ),
 }
 
-pub(crate) struct LogStream<'d> {
-    inner: BoxStream<'d, Result<String, io::Error>>,
+pub struct LogStream<'s> {
+    inner: BoxStream<'s, Result<String, io::Error>>,
 }
 
-impl<'d> fmt::Debug for LogStream<'d> {
+impl<'s> fmt::Debug for LogStream<'s> {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_struct("LogStream").finish()
     }
 }
 
-impl<'d> LogStream<'d> {
+impl<'s> LogStream<'s> {
     #[inline]
-    pub fn new(stream: BoxStream<'d, Result<String, io::Error>>) -> Self {
-        Self { inner: stream }
+    // pub fn new(stream: BoxStream<'d, Result<String, io::Error>>) -> Self {
+    pub fn new(stream: impl Stream<Item = Result<String, io::Error>> + 's + Send) -> Self {
+        Self {
+            inner: stream.boxed(),
+        }
     }
 
     #[inline]

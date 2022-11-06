@@ -20,4 +20,7 @@ lto = true
 [dev-dependencies]
 tokio = { version = "1", features = [ "full" ] }
 reqwest = "0.11"
+log = "0.4"
+pretty_env_logger = "0.4"
 color-eyre = "0.6"
+testcontainers-rs = { path = "testcontainers" }

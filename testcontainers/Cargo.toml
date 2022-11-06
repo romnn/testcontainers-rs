@@ -45,6 +45,9 @@ bollard = "0.13"
 tokio = { version = "1", features = [ "macros" ] }
 async-trait = "0.1"
 futures = "0.3"
+log = "0.4"
+# TODO: remove color-eyre asap
+color-eyre = "0.6"
 
 [dev-dependencies]
 pretty_assertions = "1"
