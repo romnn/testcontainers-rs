@@ -2,9 +2,10 @@ use super::container::Container;
 use super::image::DockerImage;
 use super::logs::LogStream;
 use super::ports::Ports;
+use async_trait::async_trait;
 use std::net;
 
-#[async_trait::async_trait]
+#[async_trait]
 pub trait DockerClient
 where
     Self: Sized,
@@ -32,6 +33,7 @@ where
 
 pub mod bollard {
     use super::{Container, DockerClient, DockerImage, LogStream, Ports};
+    use async_trait::async_trait;
     use bollard::container::LogsOptions;
     use color_eyre::eyre;
     use futures::{StreamExt, TryStreamExt};
@@ -105,7 +107,7 @@ pub mod bollard {
     //     }
     // }
 
-    #[async_trait::async_trait]
+    #[async_trait]
     impl DockerClient for Client {
         type Client = bollard::Docker;
         type Error = Error;
@@ -359,9 +361,9 @@ pub mod bollard {
         #[tokio::test(flavor = "multi_thread")]
         async fn get_native_client() -> eyre::Result<()> {
             let concrete: Client = Client::new().await?;
-            let client: Box<&dyn DockerClient<Client = _, Error = _>> = Box::new(&concrete);
-            let native: &bollard::Docker = client.native();
-            assert!(std::ptr::eq(&concrete.inner, native));
+            // let client: Box<&dyn DockerClient<Client = _, Error = _>> = Box::new(&concrete);
+            let native: &bollard::Docker = concrete.native();
+            assert!(std::ptr::eq(&*concrete.inner, native));
             Ok(())
         }
 
