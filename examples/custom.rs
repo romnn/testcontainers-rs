@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 use color_eyre::eyre;
 use testcontainers_rs::{
     client::{bollard::Client, DockerClient},
