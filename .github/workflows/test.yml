@@ -42,6 +42,5 @@ jobs:
       - name: Publish crates (dry-run)
         uses: romnn/publish-crates@main
         with:
-          version: latest
           dry-run: true
           resolve-versions: true
