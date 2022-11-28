@@ -14,6 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         package: ${{ fromJson(needs.feature-matrix.outputs.matrix) }}
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
@@ -27,3 +28,20 @@ jobs:
           --package "${{ matrix.package.name }}"
           --features "${{ matrix.package.features }}"
           --all-targets
+
+  publish:
+    name: publish (dry-run)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Publish crates (dry-run)
+        uses: romnn/publish-crates@main
+        with:
+          version: latest
+          dry-run: true
+          resolve-versions: true

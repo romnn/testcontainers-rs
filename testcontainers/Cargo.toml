@@ -3,31 +3,22 @@ name = "testcontainers-rs"
 version = "0.0.0"
 edition = "2021"
 authors = ["romnn <contact@romnn.com>"]
-description = "testcontainers in rust"
+description = "rust testcontainers"
 license-file = "LICENSE"
 readme = "README.md"
 homepage = "https://github.com/romnn/testcontainers-rs"
 repository = "https://github.com/romnn/testcontainers-rs"
+publish = true
 categories = [
-  "multimedia::images",
-  "command-line-utilities",
-  "wasm",
-  "web-programming"
+  "development-tools::testing"
 ]
 keywords = [
-  "image",
-  "35mm",
-  "film",
-  "photography",
-  "borders"
+  "docker",
+  "testcontainers",
+  "integration-testing",
+  "containers",
 ]
-exclude = [
-  "samples/*",
-  "www/*",
-  "nginx.conf",
-  "tasks.py",
-  "Dockerfile*"
-]
+exclude = []
 
 [lib]
 crate-type = ["cdylib", "lib"]

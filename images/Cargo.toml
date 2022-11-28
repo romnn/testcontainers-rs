@@ -1,6 +1,24 @@
 [package]
-name = "testcontainer-images"
+name = "testcontainers-rs-images"
 version = "0.0.0"
 edition = "2021"
+authors = ["romnn <contact@romnn.com>"]
+description = "pre-configured testcontainer images"
+license-file = "LICENSE"
+readme = "README.md"
+homepage = "https://github.com/romnn/testcontainers-rs"
+repository = "https://github.com/romnn/testcontainers-rs"
+publish = true
+categories = [
+  "development-tools::testing"
+]
+keywords = [
+  "docker",
+  "testcontainers",
+  "integration-testing",
+  "containers",
+]
+exclude = []
+
 
 [dependencies]
